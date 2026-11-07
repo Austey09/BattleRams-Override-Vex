@@ -21,10 +21,13 @@ extern pros::Distance dSouth;
 extern pros::Distance dEast;
 extern pros::Distance dWest;
 
+extern pros::Rotation liftEnc;
+extern pros::Rotation liftMotorsEnc;
 extern pros::Rotation horizontalEnc;
 extern lemlib::TrackingWheel horizontalTrackingWheel;
 extern pros::Rotation verticalEnc;
 extern lemlib::TrackingWheel verticalTrackingWheel;
+extern pros::Rotation chainLiftEnc;
 
 extern lemlib::ControllerSettings linearController;
 extern lemlib::ControllerSettings angularController;
@@ -37,11 +40,9 @@ extern lemlib::Chassis chassis;
 extern pros::Optical colorSensor;
 
 //motors
-extern pros::MotorGroup intakeMotors;
+extern pros::MotorGroup chainLift;
 extern pros::MotorGroup liftMotors;
-extern pros::MotorGroup armMotors;
 extern pros::MotorGroup rollerMotors;
-//extern pros::Motor outtakeMotor;
 
 extern pros::adi::Pneumatics Claw;
 //pneumatics

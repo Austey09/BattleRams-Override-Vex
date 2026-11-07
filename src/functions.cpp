@@ -19,24 +19,22 @@
 
 using namespace lemlib;
 
-void intake() {
-    intakeMotors.move(127); // move front intake at full speed
+void chain_lift() {
+    chainLift.move(127); // move front intake at full speed
     //outtakeMotor.move(-127); // move descore motor at full speed
 }
 
-void intake_reverse() {
-    intakeMotors.move(-127); // move front intake at full speed
+void chain_lift_reverse() {
+    chainLift.move(-127); // move front intake at full speed
 }
 
-void intake_brake() {
-    intakeMotors.brake(); // move front intake at full speed
+void chain_lift_brake() {
+    chainLift.brake(); // move front intake at full speed
 }
 void lift() {
     liftMotors.move(127); // move front intake at full speed
 }
-void arm() {
-    armMotors.move(127); // move front intake at full speed
-}
+
 void roller() {
     rollerMotors.move(127); // move front intake at full speed
 }

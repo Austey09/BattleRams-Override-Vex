@@ -72,91 +72,6 @@ void competition_initialize() {
 ASSET(test_txt);
 
 void autonomous() {
-    auto_roller::reset();
-    //robot_ui::runSelectedAutonomous();
-    liftMotors.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    armMotors.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    chassis.setPose(0,0,0); 
-    chassis.moveToPoint(0,8,1000,{},false);
-    armMotors.move(-55);
-    pros::delay(100);
-    armMotors.move(0);
-    liftMotors.move(127);
-    pros::delay(500);
-    liftMotors.brake();
-    chassis.turnToHeading(-270,1000);
-    chassis.moveToPoint(-24,8,2000,{.forwards=false, .maxSpeed=80},false);
-    liftMotors.move(-60);
-    pros::delay(600);
-    liftMotors.brake();
-    pros::delay(550);
-    Claw.set_value(true);
-    pros::delay(500);
-    chassis.moveToPoint(6,8,1000);
-    liftMotors.move(-127);
-    pros::delay(200);
-    liftMotors.brake();
-    chassis.turnToHeading(0,750);
-    chassis.moveToPoint(6,-1,2000,{.forwards=false},false);
-    Claw.set_value(false);
-    chassis.setPose(0,0,0);
-    pros::delay(500);
-    chassis.moveToPoint(6,10,1000);
-    liftMotors.move(127);
-    pros::delay(1000);
-    liftMotors.brake();
-    chassis.turnToHeading(90,1000);
-    chassis.moveToPoint(-28,10,2000,{.forwards=false, .maxSpeed=80},false);
-    liftMotors.move(-60);
-    pros::delay(600);
-    liftMotors.brake();
-    Claw.set_value(true);
-
-
-    
-
-
-    /*
-    chassis.moveToPoint(0, 10, 2000);
-    Claw.set_value(true);
-    chassis.moveToPoint(0,-2,1500,{.forwards = false});
-    pros::delay(1000);
-    Claw.set_value(false);
-    chassis.setPose(0,0,0);
-    chassis.moveToPoint(0, 10, 1000);
-    liftMotors.move(127);
-    pros::delay(900);
-    liftMotors.move(0);
-    liftMotors.brake();
-    chassis.turnToHeading(180,1000,{.maxSpeed= 80});
-    chassis.moveToPoint(47, 54, 5000,{.forwards = false,.maxSpeed=80},false);
-    pros::delay(2000);
-    pros::delay(1000);
-    RightMech.set_value(true);
-    chassis.moveToPoint(0, 10, 3000,{},true);
-    liftMotors.move(-127);
-    pros::delay(750);
-    liftMotors.brake();
-    chassis.turnToHeading(0,2000);
-    RightMech.set_value(true);
-    chassis.moveToPoint(3,1,2000,{.forwards=false},false);
-    chassis.setPose(0,0,0);
-    RightMech.set_value(false);
-    chassis.moveToPoint(0, 10, 1000);
-    chassis.moveToPoint(47, 54, 5000,{.forwards = false,.maxSpeed=80},true);
-    liftMotors.move(127);
-    pros::delay(1500);
-    liftMotors.brake();
-    pros::delay(2000);
-    pros::delay(1000);
-    liftMotors.move(-127);
-    pros::delay(750);
-    RightMech.set_value(true);
-*/
-    
-
-
-
 
 }
 
@@ -205,15 +120,15 @@ void opcontrol() {
         pros::delay(10); //this is super important, never delete this line
        
         if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
-        intakeMotors.move(127);       // Hold R2: intake forward
+            chainLift.move(127);       // Hold R2: intake forward
         }
         else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-        intakeMotors.move(-127);      // Hold L2: intake reverse
+            chainLift.move(-127);      // Hold L2: intake reverse
         }
         else {
-        intakeMotors.move(0);         // Release: stop powering the intake
+            chainLift.move(0);         // Release: stop powering the intake
         } 
-        liftMotors.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+        chainLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
        
         if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
@@ -225,19 +140,8 @@ void opcontrol() {
         else {
         liftMotors.brake();// Hold current position
         }
+        liftMotors.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
-        armMotors.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-
-     
-        if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
-            armMotors.move(60);// Arm moves up
-        } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
-            armMotors.move(-60);// Arm moves down
-        } else {
-            armMotors.brake();// Hold arm in place  
-        }
-
-     
         if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
             if (ClawState == false) {
                 Claw.set_value(true);

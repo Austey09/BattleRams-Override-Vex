@@ -12,10 +12,9 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 // motor groups
 pros::MotorGroup leftMotors({-14,-19}, pros::MotorGears::blue); // left motor group
 pros::MotorGroup rightMotors({11, 12}, pros::MotorGears::blue); // right motor group
-pros::MotorGroup intakeMotors({ -2,9}, pros::MotorGears::blue); // intake motor group
+pros::MotorGroup chainLift({ -2,9}, pros::MotorGears::green); // intake motor group
 pros::MotorGroup liftMotors({3, -8}, pros::MotorGears::green); // lift motor group
-pros::MotorGroup armMotors({-5,6}, pros::MotorGears::green); // arm motor group
-pros::MotorGroup rollerMotors({1}, pros::MotorGears::green); // roller motor group
+pros::MotorGroup rollerMotors({1}, pros::MotorGears::blue); // roller motor group
 
 //color sensor
 pros::Optical colorSensor(7);
@@ -30,7 +29,8 @@ pros::adi::Pneumatics Claw('A',false,false);
 //pros::Distance dSouth(14);
 //pros::Distance dEast(0);
 //pros::Distance dWest(0);
-
+pros::Rotation chainLiftEnc(5);
+pros::Rotation liftMotorsEnc(4);
 // tracking wheels
 // horizontal tracking wheel encoder.
 pros::Rotation horizontalEnc(20);

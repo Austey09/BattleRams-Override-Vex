@@ -292,7 +292,7 @@ void stopRobotAfterAutonTest() {
     rightMotors.brake();
 
     // Stop the mechanisms using their existing brake modes.
-    intakeMotors.move(0);
+    chainLift.move(0);
     liftMotors.move(0);
 }
 
@@ -641,8 +641,8 @@ void updateMotorTemperatures() {
 
     updateTemperatureLabel(
         intakeTempLabel,
-        "INTAKE",
-        intakeMotors.get_temperature_all()
+        "CHAIN LIFT",
+        chainLift.get_temperature_all()
     );
 
     updateTemperatureLabel(
